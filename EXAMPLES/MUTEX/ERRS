@@ -1,0 +1,7 @@
+Turbo C++ Version 3.00 Copyright (c) 1992 Borland International
+testmu2.c:
+Warning testmu2.c 63: Function should return a value in function xmain
+mutex.c:
+Turbo Link  Version 5.0 Copyright (c) 1992 Borland International
+
+        Available memory 4113584
