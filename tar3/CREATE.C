@@ -4,7 +4,7 @@
 #include <kernel.h>
 #include <proc.h>
 #include <mem.h>
-#include "new.h"
+#include "new.h"//CHANGE
 
 #define	INITF	0x0200	/* initial flag register - set interrupt flag,	*/
 			/* clear direction and trap flags		*/
@@ -39,11 +39,6 @@ int args;			/* arguments (treated like an array)	*/
 		restore(ps);
 		return(SYSERR);
 	}
-	//change
-	
-	procQuantum[pid]=(priority/25)+1;
-	
-	//end change
 	numproc++;
 	pptr = &proctab[pid];
 	pptr->pstate = PRSUSP;
@@ -67,6 +62,12 @@ int args;			/* arguments (treated like an array)	*/
 	sp -= 2;			/* 2 words for si and di	*/
 	pptr->pregs = (char *)sp;	/* save for context switch	*/
 	pptr->paddr = procaddr;
+	//CHANGE
+	pprio[pid] = priority;
+	runnable_time[pid] = 0;
+	current_time[pid] = 0;
+	peffec[pid] = calc_peffec(pid); 
+	//END_CHANGE
 	restore(ps);
 	return(pid);
 }

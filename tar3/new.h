@@ -1,6 +1,6 @@
+extern int pprio[NPROC];
+extern int peffec[NPROC];
+extern long int runnable_time[NPROC];
+extern long int current_time[NPROC];
 
-extern int procQuantum[NPROC];
-
-extern int ReadySize = 0 ;
-extern int ReschedN = 0 ;
-extern int ReschedSevev = 0 ;
+#define lastkeyeffec(tail)   peffec[q[(tail)].qprev]

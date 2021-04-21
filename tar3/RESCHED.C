@@ -4,6 +4,7 @@
 #include <kernel.h>
 #include <proc.h>
 #include <q.h>
+#include "new.h"//CHANGE
 
 /*------------------------------------------------------------------------
  *  resched  --  reschedule processor to highest priority ready process
@@ -17,18 +18,26 @@ int	resched()
 {
 	register struct	pentry	*optr;	/* pointer to old process entry */
 	register struct	pentry	*nptr;	/* pointer to new process entry */
-
 	optr = &proctab[currpid];
 	if ( optr->pstate == PRCURR ) 
          {
 		/* no switch needed if current prio. higher than next	*/
 		/* or if rescheduling is disabled ( pcxflag == 0 )	*/
-		if ( sys_pcxget() == 0 || lastkey(rdytail) < optr->pprio
-                 || ( (lastkey(rdytail) == optr->pprio) && (preempt > 0) ) )
+		//CHANGE
+		if ( sys_pcxget() == 0 || lastkeyeffec(rdytail) < peffec[currpid]
+                 || ( (lastkeyeffec(rdytail) == peffec[currpid]) && (preempt > 0) ) )
 			return;
+		// if ( sys_pcxget() == 0 || lastkey(rdytail) < optr->pprio
+                // || ( (lastkey(rdytail) == optr->pprio) && (preempt > 0) ) )
+		// return;
+		//END_CHANGE
+		
 		/* force context switch */
 		optr->pstate = PRREADY;
-		insert(currpid,rdyhead,optr->pprio);
+		//CHANGE
+		insert(currpid,rdyhead,peffec[currpid]);
+		//insert(currpid,rdyhead,optr->pprio);
+		//END_CHANGE
 	} /* if */ 
         else if ( sys_pcxget() == 0 ) 
             {

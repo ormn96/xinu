@@ -3,6 +3,7 @@
 #include <conf.h>
 #include <kernel.h>
 #include <q.h>
+#include "new.h"//CHANGE
 
 /*------------------------------------------------------------------------
  *  insert  --  insert a process into a q list in key order
@@ -15,7 +16,15 @@ int key;				/* key to use for this process	*/
 {
 	int	next;			/* runs through list		*/
 	int	prev;
-
+	//CHANGE
+	if(head == rdyhead){
+		next = q[rdyhead].qnext;
+		while (next!= rdytail){
+			q[next].qkey = calc_peffec(next);
+			next = q[next].qnext;
+		}
+	}
+	//END_CHANGE
 	next = q[head].qnext;
 	while (q[next].qkey < key)	/* tail has MAXINT as key	*/
 		next = q[next].qnext;

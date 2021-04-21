@@ -70,6 +70,14 @@ int	rdyhead,rdytail;	/* head/tail of ready list (q indexes)	*/
 
 #define	NULLNM	"**NULL**"	/* null process name			*/
 
+//CHANGE
+int pprio[NPROC];
+int peffec[NPROC];
+long int runnable_time[NPROC];
+long int current_time[NPROC];
+
+//END_CHANGE
+
 /************************************************************************/
 /***				NOTE:				      ***/
 /***								      ***/
@@ -190,6 +198,12 @@ LOCAL sysinit()
 	pptr = &proctab[NULLPROC];	/* initialize null process entry */
 	pptr->pstate = PRCURR;
 	pptr->pprio = 0;
+	//CHANGE
+	pprio[NULLPROC] = 0;
+	runnable_time[NULLPROC] = 0;
+	current_time[NULLPROC] = 0;
+	peffec[NULLPROC] = 0; 
+	//END_CHANGE
 #ifdef TURBOC
 	pptr->pbase = maxaddr;		/* null process pbase stack ptr	*/
 #else
@@ -211,14 +225,12 @@ LOCAL sysinit()
 	}
 
 	rdytail = 1 + ( rdyhead=newqueue() );	/* initialize ready list */
-
 #ifdef	MEMMARK
 	_mkinit();			/* initialize memory marking	*/
 #else
 	pinit();			/* initialize ports		*/
 	poolinit();			/* initialize the buffer pools	*/
 #endif
-
 	clkinit();			/* initialize real-time clock	*/
 
 #ifdef	Ndsk
@@ -229,7 +241,6 @@ LOCAL sysinit()
 #ifdef	Ntty
 	winofcur = 0;			/* initialize current window	*/
 #endif
-
 	mapinit(DB0VEC, _panic, DB0VEC);	/* divide by zero	*/
 	mapinit(SSTEPVEC, _panic, SSTEPVEC);	/* single step		*/
 	mapinit(BKPTVEC, _panic, BKPTVEC);	/* breakpoint		*/
@@ -252,7 +263,6 @@ LOCAL sysinit()
         set_new_int9_newisr();
 	if ( mapinit( CLKVEC | BIOSFLG, clkint, 0 ) == SYSERR )
 		return(SYSERR);
-
 	return(OK);
 }
 
