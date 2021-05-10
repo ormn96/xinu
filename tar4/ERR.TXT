@@ -1,0 +1,34 @@
+Turbo C++ Version 3.00 Copyright (c) 1992 Borland International
+clkint.c:
+Warning clkint.c 46: Function should return a value in function clkint
+Warning clkint.c 46: Parameter 'mdevno' is never used in function clkint
+freemem.c:
+freep.c:
+getmem.c:
+initiali.c:
+insertdm.c:
+kill.c:
+Warning kill.c 56: Possibly incorrect assignment in function kill
+memq.c:
+memslp.c:
+Warning memslp.c 38: Nonportable pointer conversion in function getmemForTime
+Error memslp.c 47: Undefined symbol 'TICSD' in function getmemForTime
+Error memslp.c 49: Undefined symbol 'TICSN' in function getmemForTime
+Warning memslp.c 62: Nonportable pointer comparison in function tmpMemGetOpenId
+*** 2 errors in Compile ***
+memwake.c:
+Error memwake.c 13: Undefined symbol 'NULL' in function tmpMem_new_wakeup
+Error memwake.c 17: Undefined symbol 'TICSD' in function tmpMem_new_wakeup
+Error memwake.c 19: Undefined symbol 'TICSN' in function tmpMem_new_wakeup
+*** 3 errors in Compile ***
+xfork.c:
+Warning xfork.c 67: Suspicious pointer conversion in function xfork
+Warning xfork.c 68: Suspicious pointer conversion in function xfork
+Warning xfork.c 107: Suspicious pointer conversion in function xfork
+xforksf.c:
+xwait.c:
+Error ..\proc.h 38: Declaration missing ;
+Error xwait.c 4: Declaration syntax error
+*** 2 errors in Compile ***
+
+	Available memory 4095972
