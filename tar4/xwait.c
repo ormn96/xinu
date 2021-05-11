@@ -5,7 +5,7 @@
 SYSCALL xwait(){
 	if(findNumOfSons(currpid)==0)
 		return(SYSERR);
-	wait_cnt[currpid] =1;
+	wait_cnt[currpid] = 1;
 	suspend(currpid);
 	return(OK);
 }

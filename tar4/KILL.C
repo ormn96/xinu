@@ -27,8 +27,8 @@ SYSCALL kill(pid)
 		return(SYSERR);
 	}
 	//CHANGE
-		 if((f = father[pid])!=-1){
-			 if(wait_cnt[f]!=-1){
+		 if((f = father[pid])!=-1){//if son of some proc
+			 if(wait_cnt[f]!=-1){//father is waiting
 				 wait_cnt[f]--;
 				 if(wait_cnt[f] ==0){
 					wait_cnt[f]	=-1;

@@ -24,7 +24,7 @@ SYSCALL getmemForTime(int nbytes,int secs,void** ptr)
 	int timeTmp;
 	int tmpMemId;
 	char* tmpMem;
-	
+
 	if ( secs<0 )
 		return(SYSERR);
 	if (secs == 0) {
@@ -35,7 +35,7 @@ SYSCALL getmemForTime(int nbytes,int secs,void** ptr)
 		restore(ps);
 		return(SYSERR);
 	}
-	
+
 	if((tmpMem = getmem(nbytes) )== NULL){
 		restore(ps);
 		return(SYSERR);

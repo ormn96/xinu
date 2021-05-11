@@ -265,6 +265,11 @@ LOCAL sysinit()
 //CHANGE
 	//TMPMEM
 	qmem[tmpMemHead].qnext = tmpMemTail;
+	qmem[tmpMemHead].qprev = EMPTY;
+	qmem[tmpMemHead].qkey  = MININT;
+	qmem[tmpMemTail].qnext = EMPTY;
+	qmem[tmpMemTail].qprev = tmpMemHead;
+	qmem[tmpMemTail].qkey  = MAXINT;
 	tmpMemNotEmpty = FALSE;
 	for(i=0;i<NQMEM;i++)
 		qmem[i].iptr = NULL;
